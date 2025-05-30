@@ -1,12 +1,16 @@
-import {  Button, Drawer, Form, Input, Typography, type InputRef } from "antd";
+import {  Button, Drawer, Form, Input, Switch, Typography, type InputRef } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { useRef, useState } from "react";
 import { todoActions } from "../../store";
 import { getFormattedTime } from "../../utils/getFormatedDate";
 import { useAppDispatch } from "../../store/hook";
 import { v4 as uuidv4 } from 'uuid';
+import { BulbOutlined, CloudOutlined } from "@ant-design/icons";
 
-const Navbar = () => {
+interface NavbarProps  {
+  toggleTheme: ()=>void
+}
+const Navbar = ({toggleTheme}:NavbarProps) => {
   const [open,setOpen] = useState(false);
   const inputRef = useRef<InputRef | null>(null);
   const dispatch = useAppDispatch();
@@ -21,7 +25,7 @@ const Navbar = () => {
       if(inputRef.current?.input.value){
         dispatch(todoActions.add({
           id: uuidv4(),
-          title: inputRef.current.input.value,
+          title: inputRef.current.input.value.trim(),
           isDone: false,
           createdAt: getFormattedTime(),
         }));
@@ -33,6 +37,7 @@ const Navbar = () => {
       <Typography.Title level={1} style={{ color: "white", margin: 0 }}>
         Todo
       </Typography.Title>
+      <Switch checkedChildren={<BulbOutlined />} unCheckedChildren={<CloudOutlined/>} defaultChecked onChange={toggleTheme} />
       <Button onClick={showDrawer}>Add Todo</Button>
       <Drawer title="Add Todo" onClose={handleClose} open={open}>
         <Form style={{display:"flex", gap:"6px"}}>
