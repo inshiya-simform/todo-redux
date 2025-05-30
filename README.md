@@ -18,4 +18,4 @@ A simple and intuitive Todo application built using **React** for the UI, **Redu
 - **React** – Frontend library for building user interfaces
 - **Redux** – State management library
 - **React-Redux** – Official React bindings for Redux
-- **CSS** – Custom styling
+- **Styling** – AntD
