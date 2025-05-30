@@ -1,13 +1,15 @@
 import {  Button, Drawer, Form, Input, Typography, type InputRef } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
 import { todoActions } from "../../store";
 import { getFormattedTime } from "../../utils/getFormatedDate";
+import { useAppDispatch } from "../../store/hook";
+import { v4 as uuidv4 } from 'uuid';
+
 const Navbar = () => {
   const [open,setOpen] = useState(false);
   const inputRef = useRef<InputRef | null>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   function handleClose(){
     setOpen(false);
   }
@@ -18,13 +20,13 @@ const Navbar = () => {
     if(inputRef.current?.input instanceof HTMLInputElement){
       if(inputRef.current?.input.value){
         dispatch(todoActions.add({
+          id: uuidv4(),
           title: inputRef.current.input.value,
           isDone: false,
           createdAt: getFormattedTime(),
         }));
       }
     }
-    alert("added todo")
   }
   return (
     <Header style={{ display: "flex", alignItems: "center", justifyContent:"space-between" }}>
