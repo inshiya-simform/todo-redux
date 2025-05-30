@@ -20,6 +20,13 @@ const TodoList = () => {
       })
     );
   }
+  function deleteTodo(id: string) {
+    dispatch(
+      todoActions.delete({
+        id: id,
+      })
+    );
+  }
   return (
     <List
       className="demo-loadmore-list"
@@ -36,7 +43,7 @@ const TodoList = () => {
             >
               mark as done
             </Button>,
-            <Button key="list-loadmore-more" color="danger" variant="solid">
+            <Button key="list-loadmore-more" color="danger" variant="solid" onClick={()=>deleteTodo(todo.id)}>
               delete
             </Button>,
           ]}

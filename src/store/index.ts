@@ -33,6 +33,12 @@ export const todoSlice = createSlice({
         isDone: true,
       };
     },
+    delete(state, action) {
+      return state.filter(
+        (todo) => todo.id !== action.payload.id
+      );
+
+    },
   },
 });
 
