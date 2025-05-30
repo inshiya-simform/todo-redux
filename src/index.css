@@ -7,3 +7,27 @@ html,body{
 #root{
     height: 100%;
 }
+.layout{
+    height: 100%;
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.ant-typography.logo{
+    color: white;
+    margin: 0;
+}
+.form{
+    display: flex;
+    gap: 6px;
+}
+.todo-list{
+    padding: 1rem 2rem;
+}
+.todo-item-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

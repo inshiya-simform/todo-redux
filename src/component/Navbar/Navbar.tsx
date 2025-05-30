@@ -33,16 +33,16 @@ const Navbar = ({toggleTheme}:NavbarProps) => {
     }
   }
   return (
-    <Header style={{ display: "flex", alignItems: "center", justifyContent:"space-between" }}>
-      <Typography.Title level={1} style={{ color: "white", margin: 0 }}>
+    <Header className="header">
+      <Typography.Title className="logo" level={1}>
         Todo
       </Typography.Title>
       <Switch checkedChildren={<BulbOutlined />} unCheckedChildren={<CloudOutlined/>} defaultChecked onChange={toggleTheme} />
       <Button onClick={showDrawer}>Add Todo</Button>
       <Drawer title="Add Todo" onClose={handleClose} open={open}>
-        <Form style={{display:"flex", gap:"6px"}}>
+        <Form onSubmitCapture={addTodo} className="form">
           <Input ref={inputRef} type="text" placeholder="Enter todo here..."/>
-          <Button onClick={addTodo} type="primary">Add Todo</Button>
+          <Button htmlType="submit" type="primary">Add Todo</Button>
         </Form>
       </Drawer>
     </Header>

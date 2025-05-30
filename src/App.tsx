@@ -1,5 +1,5 @@
 import { ConfigProvider, Layout, theme } from "antd";
-import "./App.css";
+import "./index.css";
 import Navbar from "./component/Navbar/Navbar";
 import TodoList from "./component/TodoList/TodoList";
 import { useState } from "react";
@@ -16,9 +16,7 @@ function App() {
       }}
     >
       <Layout
-        style={{
-          height: "100%",
-        }}
+      className="layout"
       >
         <Navbar toggleTheme={toggleTheme} />
         <TodoList />
