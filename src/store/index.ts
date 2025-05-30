@@ -24,6 +24,15 @@ export const todoSlice = createSlice({
         title: action.payload.title,
       };
     },
+    markAsDone(state, action) {
+      const markedAsDoneTodo = state.findIndex(
+        (todo) => todo.id === action.payload.id
+      );
+      state[markedAsDoneTodo] = {
+        ...state[markedAsDoneTodo],
+        isDone: true,
+      };
+    },
   },
 });
 

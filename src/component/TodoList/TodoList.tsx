@@ -1,15 +1,22 @@
-import { Button, List, Typography } from "antd";
+import { Alert, Button, List, Typography } from "antd";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { todoActions } from "../../store";
 
 const TodoList = () => {
   const todos = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
-  function editTodo(value:string, id: string) {
+  function editTodo(value: string, id: string) {
     dispatch(
       todoActions.edit({
         id: id,
-        title:value,
+        title: value,
+      })
+    );
+  }
+  function markTodoAsDone(id: string) {
+    dispatch(
+      todoActions.markAsDone({
+        id: id,
       })
     );
   }
@@ -25,6 +32,7 @@ const TodoList = () => {
             <Button
               disabled={todo.isDone ? true : false}
               key="list-loadmore-more"
+              onClick={() => markTodoAsDone(todo.id)}
             >
               mark as done
             </Button>,
@@ -36,12 +44,16 @@ const TodoList = () => {
           <div
             style={{ display: "flex", flexDirection: "column", width: "100%" }}
           >
-            <Typography.Title
-              editable={{ onChange: (val) => editTodo(val, todo.id) }}
-              level={3}
-            >
-              {todo.title}
-            </Typography.Title>
+            {todo.isDone ? (
+              <Alert message={`${todo.title} marked done`} type="success" />
+            ) : (
+              <Typography.Title
+                editable={{ onChange: (val) => editTodo(val, todo.id) }}
+                level={3}
+              >
+                {todo.title}
+              </Typography.Title>
+            )}
             <List.Item.Meta description={todo.createdAt} />
           </div>
         </List.Item>
