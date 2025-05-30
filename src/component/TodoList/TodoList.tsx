@@ -29,9 +29,8 @@ const TodoList = () => {
   }
   return (
     <List
-      className="demo-loadmore-list"
+      className="demo-loadmore-list todo-list"
       itemLayout="horizontal"
-      style={{ padding: "1rem 2rem" }}
       dataSource={todos}
       renderItem={(todo) => (
         <List.Item
@@ -49,7 +48,7 @@ const TodoList = () => {
           ]}
         >
           <div
-            style={{ display: "flex", flexDirection: "column", width: "100%" }}
+            className="todo-item-container"
           >
             {todo.isDone ? (
               <Alert message={`${todo.title} marked done`} type="success" />
